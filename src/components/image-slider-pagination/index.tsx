@@ -1,14 +1,13 @@
-import {Alert, View} from 'react-native';
-import React, {useState} from 'react';
+import {View} from 'react-native';
+import React from 'react';
 import Animated, {
   useAnimatedStyle,
   interpolate,
   Extrapolate,
 } from 'react-native-reanimated';
-import {ImageSliderPaginationProps} from './props';
+import {ImageSliderPagination as ImageSliderPaginationProps} from '../types';
 
 import style from './style';
-import {colors} from '../../utils';
 
 export const ImageSliderPagination = (props: ImageSliderPaginationProps) => {
   const {data, x, size, color} = props;

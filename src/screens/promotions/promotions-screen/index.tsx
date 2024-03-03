@@ -1,14 +1,21 @@
 import React, {useEffect, useMemo, useState} from 'react';
 import {View, ActivityIndicator, ScrollView, Alert} from 'react-native';
+
 import style from './style';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPromotionsList, getTagsList} from '@services';
-import {RootState} from '../../redux/store';
-import {CategoryButton, Header, ImageSlider} from '../../components';
-import {CategoryButtonContent} from '@types';
-export const HomeScreen = () => {
+import {getPromotionsList, getTagsList} from '../../../api';
+import {RootState} from '../../../redux/store';
+import {CategoryButton, Header, ImageSlider} from '../../../components';
+
+export const PromotionsScreen = () => {
   const dispatch = useDispatch<any>();
-  const [selectedItem, setSelectedItem] = useState<CategoryButtonContent>({
+
+  const [selectedItem, setSelectedItem] = useState<{
+    Id: number;
+    Name: string;
+    IconUrl: string;
+    Rank: number;
+  }>({
     Id: 0,
     Name: 'Fırsatı Bul',
     IconUrl: '',

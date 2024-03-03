@@ -1,11 +1,9 @@
 import React from 'react';
 import {View, TouchableOpacity, Text, Image} from 'react-native';
 import style from './style';
-import {CategoryButtonProps} from './props';
+import {CategoryButton as CategoryButtonProps} from '../types';
 import {colors} from '../../utils';
 import {Icon} from '..';
-export type {CategoryButtonContent} from './props';
-
 export const CategoryButton = (props: CategoryButtonProps) => {
   const {contents, selectedVal, setSelectedVal, first} = props;
   const selectCategory = () => setSelectedVal(contents);

@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -14,20 +13,15 @@ import Animated, {
   interpolate,
   useAnimatedRef,
 } from 'react-native-reanimated';
-
 import RenderHtml from 'react-native-render-html';
-
 import {ImageSliderPagination, ImageSliderShadow, RemainingBadge} from '..';
-import {ImageSliderProps} from './props';
-
-import style from './style';
+import {ImageSlider as ImageSliderProps} from '../types';
 import {useNavigation} from '@react-navigation/native';
+import style from './style';
 export const ImageSlider = (props: ImageSliderProps) => {
-  const {autoPlay, data, pagination} = props;
-  const scrollViewRef = useAnimatedRef<any>(null);
+  const {data, pagination} = props;
+  const scrollViewRef = useAnimatedRef<Animated.ScrollView>();
   const navigation = useNavigation<any>();
-  const interval = useRef<any>();
-  const [isAutoPlay, setIsAutoPlay] = useState<any>(autoPlay);
   const [activePageColor, setActivePageColor] = useState<string>('');
   const [newData] = useState([
     {key: 'spacer-left'},
@@ -54,33 +48,13 @@ export const ImageSlider = (props: ImageSliderProps) => {
     );
   }, [x.value]);
 
-  useEffect(() => {
-    if (isAutoPlay === true) {
-      let _offSet = offSet.value;
-      interval.current = setInterval(() => {
-        if (_offSet >= Math.floor(SIZE * (data.length - 1) - 10)) {
-          _offSet = 0;
-        } else {
-          _offSet = Math.floor(_offSet + SIZE);
-        }
-        scrollViewRef.current.scrollTo({x: _offSet, y: 0});
-      }, 2000);
-    } else {
-      clearInterval(interval.current);
-    }
-  }, [SIZE, SPACER, isAutoPlay, data.length, offSet.value, scrollViewRef]);
-
   return (
     <View>
       <Animated.ScrollView
         ref={scrollViewRef}
         onScroll={onScroll}
-        onScrollBeginDrag={() => {
-          setIsAutoPlay(false);
-        }}
         onMomentumScrollEnd={e => {
           offSet.value = e.nativeEvent.contentOffset.x;
-          setIsAutoPlay(autoPlay);
         }}
         scrollEventThrottle={16}
         decelerationRate="fast"

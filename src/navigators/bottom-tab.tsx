@@ -1,13 +1,11 @@
 import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {View, StyleSheet, Platform, Text} from 'react-native';
-import {CompassIcon, WalletIcon} from '../assets';
-import {Icon} from '../components';
-import {colors} from '../utils';
-import {HomeScreen} from '../screens';
-
+import {CompassIcon, WalletIcon} from '@assets';
+import {Icon} from '@components';
+import {colors} from '@utils';
+import {HomeScreen} from '@screens';
 const Tab = createBottomTabNavigator();
-
 export const BottomTab = () => {
   return (
     <Tab.Navigator
@@ -18,23 +16,7 @@ export const BottomTab = () => {
         tabBarLabelStyle: {display: 'none'},
         tabBarHideOnKeyboard: true,
         lazy: true,
-        tabBarStyle: {
-          position: 'absolute',
-          borderWidth: 2,
-          borderColor: colors.lightGray,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          backgroundColor: '#fff',
-          height: Platform.OS === 'ios' ? 75 : 60,
-          shadowColor: '#000',
-          shadowOffset: {
-            width: 0,
-            height: 12,
-          },
-          shadowOpacity: 0.58,
-          shadowRadius: 16.0,
-          elevation: 24,
-        },
+        tabBarStyle: styles.tabBar,
         tabBarIcon: ({focused}) => {
           const color: string = focused ? colors.black : colors.gray;
           if (route.name === 'wallet-screen') {
@@ -82,7 +64,6 @@ export const BottomTab = () => {
     </Tab.Navigator>
   );
 };
-
 const styles = StyleSheet.create({
   daha: {
     position: 'absolute',
@@ -92,6 +73,23 @@ const styles = StyleSheet.create({
   tab: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  tabBar: {
+    position: 'absolute',
+    borderWidth: 2,
+    borderColor: colors.lightGray,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    backgroundColor: '#fff',
+    height: Platform.OS === 'ios' ? 75 : 60,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.0,
+    elevation: 24,
   },
   tab_text: {
     fontSize: 13,

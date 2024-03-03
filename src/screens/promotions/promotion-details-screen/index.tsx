@@ -12,12 +12,12 @@ import {
 import style from './style';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getPromotionDetails} from '../../api';
-import {RootState} from '../../redux/store';
-import {Button, Icon, RemainingBadge} from '../../components';
+import {getPromotionDetails} from '../../../api';
+import {RootState} from '../../../redux/store';
+import {Button, Icon, RemainingBadge} from '../../../components';
 import RenderHTML from 'react-native-render-html';
-import {colors} from '../../utils';
-import {resetPromotionDetails} from '../../redux/slices/slice';
+import {colors} from '../../../utils';
+import {resetPromotionDetails} from '../../../redux/slices/slice';
 
 export const PromotionDetailsScreen = () => {
   const dispatch = useDispatch<any>();

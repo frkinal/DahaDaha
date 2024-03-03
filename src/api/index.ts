@@ -13,7 +13,6 @@ const api = axios.create({
 
 export const getTagsList = createAsyncThunk('slice/getTagsList', async () => {
   const res = await api.get('tags/list');
-  // Alert.alert('getTagsList', JSON.stringify(res));
   return res;
 });
 
@@ -21,7 +20,6 @@ export const getPromotionsList = createAsyncThunk(
   'slice/getPromotionsList',
   async () => {
     const res = await api.get('promotions/list?Channel=PWA');
-    // Alert.alert('getPromotionsList', JSON.stringify(res));
     return res;
   },
 );
@@ -31,7 +29,6 @@ export const getPromotionDetails = createAsyncThunk(
   async (data: {Id: number}) => {
     const {Id} = data;
     const res = await api.get(`promotions?Id=${Id}`);
-    // Alert.alert('getPromotionDetails', JSON.stringify(res));
     return res;
   },
 );

@@ -2,10 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {View, Text} from 'react-native';
 import dayjs from 'dayjs';
 
-import {RemainingBadgeProps} from './props';
 import style from './style';
 
-export const RemainingBadge = (props: RemainingBadgeProps) => {
+import {RemainingBadge as ReaminingBadgeProps} from '../types';
+
+export const RemainingBadge = (props: ReaminingBadgeProps) => {
   const {date} = props;
 
   const [remainingDate, setRemainingDate] = useState('');
